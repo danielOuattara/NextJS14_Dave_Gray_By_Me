@@ -1,10 +1,9 @@
 // import { NextRequest, NextResponse } from "next/server";
 
 // export function middleware(request: Request) {
-
-//   console.log("Middleware !")
-//   console.log(request.method)
-//   console.log(request.url)
+//   console.log("Middleware !");
+//   console.log(request.method);
+//   console.log(request.url);
 //   const origin = request.headers.get("origin");
 //   console.log("origin = ", origin);
 //   console.log("---------------------------------");
@@ -14,17 +13,18 @@
 
 //--------------------------------------------------------------------------
 
+/*  applying our middleware matcher: version 1 */
+
 // import { NextRequest, NextResponse } from "next/server";
 
-/*  applying our middleware matcher: version 1 */
 // export const config = {
 //   matcher: ["/api/:path*"],
 // };
 
 // export function middleware(request: Request) {
-//   console.log("Middleware !")
-//   console.log(request.method)
-//   console.log(request.url)
+//   console.log("Middleware !");
+//   console.log(request.method);
+//   console.log(request.url);
 //   const origin = request.headers.get("origin");
 //   console.log("origin = ", origin);
 //   console.log("---------------------------------");
@@ -35,14 +35,15 @@
 //-------------------------------------------------------------------------
 
 // /* matcher request URL : version 2 */
+
 // import { NextRequest, NextResponse } from "next/server";
 
 // export function middleware(request: Request) {
 //   if (request.url.includes("/api/")) {
 //     console.log("conditional middleware call 1 OK");
 //     console.log("In Middleware ");
-//     console.log(request.method)
-//     console.log(request.url)
+//     console.log(request.method);
+//     console.log(request.url);
 //     const origin = request.headers.get("origin");
 //     console.log("origin = ", origin);
 //     console.log("---------------------------------");
@@ -71,7 +72,6 @@
 //   return NextResponse.next();
 // }
 
-
 //--------------------------------------------------------------------------
 import { NextRequest, NextResponse } from "next/server";
 
@@ -83,13 +83,17 @@ export const config = {
 const allowedOrigins =
   process.env.NODE_ENV === "production"
     ? ["https://www.yoursite.com", "http://www.yoursite.com"]
-    : ["http://localhost:3000"/* , "https://www.google.com" */];
+    : [
+        "http://localhost:3000",
+        "https://www.google.com",
+        "https://duckduckgo.com/",
+      ];
 
 export function middleware(request: Request) {
   const origin = request.headers.get("origin");
   console.log("origin = ", origin);
 
-  if (/* !origin ||  */origin && !allowedOrigins.includes(origin)) {
+  if (/* !origin ||  */ origin && !allowedOrigins.includes(origin)) {
     return new NextResponse(null, {
       status: 400,
       statusText: "Bad request",
@@ -105,5 +109,3 @@ export function middleware(request: Request) {
 
   return NextResponse.next();
 }
-//
-//

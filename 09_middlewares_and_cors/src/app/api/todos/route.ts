@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 
 const DATA_SOURCE_URL = "https://jsonplaceholder.typicode.com/todos";
 
-
 //-------------------------------------------------
 // export async function GET() {
 //     const secret = process.env.DATA_API_KEY;
@@ -16,27 +15,26 @@ const DATA_SOURCE_URL = "https://jsonplaceholder.typicode.com/todos";
 //     return Response.json({ todos })
 // }
 
-
-//-------------------------------------------------
+//--- updated for CORS
 export async function GET(request: Request) {
-    const secret = process.env.DATA_API_KEY;
-    console.log("secret = ", secret);
+  const secret = process.env.DATA_API_KEY;
+  console.log("secret = ", secret);
 
-    const origin = request.headers.get("origin");
-    console.log("origin = ", origin);
+  const origin = request.headers.get("origin");
+  console.log("origin = ", origin);
 
-    const res = await fetch(DATA_SOURCE_URL)
-    const todos: TypeTodo[] = await res.json()
-    console.log("todos = ", todos);
+  const res = await fetch(DATA_SOURCE_URL);
+  const todos: TypeTodo[] = await res.json();
+  console.log("todos = ", todos);
 
-    // return Response.json({ todos })
+  // return Response.json({ todos })
 
-    return new NextResponse(JSON.stringify(todos), {
-        headers: {
-            "Access-Control-Allow-Origin": origin || "*",
-            "Content-Type": "application/json",
-        },
-    });
+  return new NextResponse(JSON.stringify(todos), {
+    headers: {
+      "Access-Control-Allow-Origin": origin || "*",
+      "Content-Type": "application/json",
+    },
+  });
 }
 //-------------------------------------------------
 
@@ -84,30 +82,27 @@ id in URL body: http://loclahost:3000/api/todos?id=124
 //     return Response.json({ message: `Todo ${id} is deleted` });
 // }
 
-// 
-
-
+//
 
 //------------------------------------------------------------------------
 export async function POST(request: Request) {
-    const { userId, title }: Partial<TypeTodo> = await request.json()
-    if (!userId || !title) {
-        return Response.json({ message: "Missing userId OR title" });
-    }
+  const { userId, title }: Partial<TypeTodo> = await request.json();
+  if (!userId || !title) {
+    return Response.json({ message: "Missing userId OR title" });
+  }
 
-    const res = await fetch(`${DATA_SOURCE_URL}`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "API-Key": process.env.DATA_API_KEY as string,
-        },
-        body: JSON.stringify({ userId, title, completed: false }),
-    });
+  const res = await fetch(`${DATA_SOURCE_URL}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "API-Key": process.env.DATA_API_KEY as string,
+    },
+    body: JSON.stringify({ userId, title, completed: false }),
+  });
 
-    const newTodo: TypeTodo = await res.json();
-    return Response.json(newTodo);
+  const newTodo: TypeTodo = await res.json();
+  return Response.json(newTodo);
 }
-
 
 //--------------------------------------------------------------------------
 // export async function PUT(request: Request) {

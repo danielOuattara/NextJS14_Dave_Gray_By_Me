@@ -1,4 +1,4 @@
-import AddTodo from "@/app/components/AddTodo";
+import AddTodo from "@/components/AddTodo";
 
 export default function page() {
   return <AddTodo />;

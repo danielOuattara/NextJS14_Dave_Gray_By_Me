@@ -1,4 +1,4 @@
-import Todo from "@/app/components/Todo";
+import Todo from "@/components/Todo";
 import fetchTodo from "@/lib/fetchTodo";
 import { notFound } from "next/navigation";
 

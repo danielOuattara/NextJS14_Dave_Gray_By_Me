@@ -4,7 +4,7 @@ type TypeMeta = {
   slug?: string;
   description?: string;
   date: string;
-  tags?: string[];
+  tags: string[];
 };
 
 type TypeBlogPost = {

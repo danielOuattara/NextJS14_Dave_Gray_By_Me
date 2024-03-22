@@ -36,6 +36,9 @@ export async function getPostByName(
     tags: string[];
   }>({
     source: rawMDX,
+    options: {
+      parseFrontmatter: true,
+    },
   });
 
   const id = fileName.replace(/\.mdx$/, "");
@@ -62,16 +65,19 @@ export async function getSortedAllPostsMeta(): Promise<TypeMeta[] | undefined> {
       "X-GitHub-Api-Version": "2022-11-28",
     },
   });
+
   if (!res.ok) {
-    console.log(res.statusText);
     return undefined;
   }
 
   const repoFileTree: FileTree = await res.json();
+  // console.log("repoFileTree = ", repoFileTree);
 
   const filesArray = repoFileTree.tree
     .map((obj) => obj.path)
     .filter((path) => path.endsWith(".mdx"));
+
+  console.log("filesArray = ", filesArray);
 
   const posts: TypeMeta[] = [];
 
@@ -81,5 +87,7 @@ export async function getSortedAllPostsMeta(): Promise<TypeMeta[] | undefined> {
       posts.push(post.meta);
     }
   }
+
+  console.log("posts = ", posts);
   return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
 }

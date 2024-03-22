@@ -1,11 +1,8 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import {
-  getFormattedDate,
-  getSinglePostData,
-  getSortedAllPostsFrontMatter,
-} from "@/libs";
+import { getFormattedDate, getPostByName, getSortedAllPostsMeta } from "@/libs";
 
+export const revalidate = 0;
 //---
 type Props = {
   params: {
@@ -15,17 +12,21 @@ type Props = {
 
 //--------------------------------------------------------------
 // this function SSR to SSG for all request for each blog
-export function generateStaticParams() {
-  const posts = getSortedAllPostsFrontMatter();
-  return posts.map((post) => ({
-    postId: post.id,
-  }));
-}
+// export async function generateStaticParams() {
+//   const posts = await getSortedAllPostsMeta();
+
+//   if (!posts) {
+//     return [];
+//   }
+
+//   return posts.map((post) => ({
+//     postId: post.id,
+//   }));
+// }
 
 //--------------------------------------------------------------
-export function generateMetadata({ params }: Props) {
-  const posts = getSortedAllPostsFrontMatter();
-  const post = posts.find((post) => post.id === params.postId);
+export async function generateMetadata({ params }: Props) {
+  const post = await getPostByName(`${params.postId}.mdx`);
 
   if (!post) {
     return {
@@ -34,33 +35,42 @@ export function generateMetadata({ params }: Props) {
   }
 
   return {
-    title: post.title,
-    description: post.description,
+    title: post.meta.title,
+    // description: post.description,
   };
 }
 
 //--------------------------------------------------------------
 export default async function Post({ params }: Props) {
   // check post exist !
-  const posts = getSortedAllPostsFrontMatter();
-  const post = posts.find((post) => post.id === params.postId);
+  const post = await getPostByName(`${params.postId}.mdx`);
+
   if (!post) {
-    return notFound();
+    notFound();
   }
 
   // get post data & render it
-  const postData = await getSinglePostData(params.postId);
+  const { meta, content } = post;
+
+  const publicationDate = getFormattedDate(meta.date);
+  const tags = meta.tags.map((tag, index) => (
+    <Link key={index} href={`/tags/${tag}`}>
+      {tag}
+    </Link>
+  ));
 
   return (
-    <main className="px-6 prose prose-xl prose-slate dark:prose-invert mx-auto">
-      <h1 className="text-3xl mt-4 mb-0">{postData.title}</h1>
-      <p className="mt-0">{getFormattedDate(postData.date)}</p>
-      <article>
-        <section dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
-        <p>
-          <Link href="/">← Back to home</Link>
-        </p>
-      </article>
-    </main>
+    <>
+      <h2 className="text-3xl mt-4 mb-0">{meta.tile}</h2>
+      <p className="mt-0 text-sm">{publicationDate}</p>
+      <article>{content}</article>
+      <section>
+        <h3>Related: </h3>
+        <div className="flex flex-row gap-4">{tags}</div>
+      </section>
+      <p className="mb-10">
+        <Link href={"/"}>← Back to home</Link>
+      </p>
+    </>
   );
 }

@@ -1,5 +1,4 @@
-import { getSortedAllPostsFrontMatter } from "./getSortedAllPostsFrontMatter";
 import { getFormattedDate } from "./getFormattedDate";
-import { getSinglePostData } from "./getSinglePostData";
+import { getSortedAllPostsMeta } from "./getSortedAllPostsMeta";
 
-export { getFormattedDate, getSortedAllPostsFrontMatter, getSinglePostData };
+export { getFormattedDate, getSortedAllPostsMeta };

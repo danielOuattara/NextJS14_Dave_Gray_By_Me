@@ -1,4 +1,4 @@
 import getFormattedDate from "./getFormattedDate";
-import getSortedAllPostsMeta from "./getSortedAllPostsMeta";
+import getSortedAllPostsMetadata from "./getSortedAllPostsMetadata";
 import getPostByName from "./getPostByName";
-export { getFormattedDate, getPostByName, getSortedAllPostsMeta };
+export { getFormattedDate, getPostByName, getSortedAllPostsMetadata };

@@ -1,7 +1,7 @@
 import { getPostByName } from "./index";
 
 export default async function getSortedAllPostsMeta(): Promise<
-  TypeMeta[] | undefined
+  TypeMetadata[] | undefined
 > {
   const res = await fetch(process.env.GITHUB_FETCH_URL as string, {
     headers: {
@@ -24,15 +24,15 @@ export default async function getSortedAllPostsMeta(): Promise<
 
   // console.log("filesNameArray = ", filesNameArray);
 
-  const posts: TypeMeta[] = [];
+  const postsMetadata: TypeMetadata[] = [];
 
   for (const fileName of filesNameArray) {
     const post = await getPostByName(fileName);
     if (post) {
-      posts.push(post.meta);
+      postsMetadata.push(post.meta);
     }
   }
 
-  // console.log("posts = ", posts);
-  return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
+  // console.log("postsMetadata = ", postsMetadata);
+  return postsMetadata.sort((a, b) => (a.date < b.date ? 1 : -1));
 }

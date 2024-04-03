@@ -1,4 +1,4 @@
-type TypeMeta = {
+type TypeMetadata = {
   id: string;
   title: string;
   slug?: string;
@@ -8,7 +8,7 @@ type TypeMeta = {
 };
 
 type TypeBlogPost = {
-  meta: TypeMeta;
+  meta: TypeMetadata;
   content: ReactElement<any, string | JSXElementConstructor<any>>;
 };
 

@@ -1,6 +1,10 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getFormattedDate, getPostByName, getSortedAllPostsMeta } from "@/libs";
+import {
+  getFormattedDate,
+  getPostByName,
+  getSortedAllPostsMetadata,
+} from "@/libs";
 
 export const revalidate = 0;
 

@@ -28,7 +28,7 @@ export default async function getPostByName(
   // console.log("rawMDX = ", rawMDX);
   // console.log("---------------------------------");
 
-  const { frontmatter, content } = await compileMDX<TypeMeta>({
+  const { frontmatter, content } = await compileMDX<TypeMetadata>({
     source: rawMDX,
     options: {
       parseFrontmatter: true,

@@ -21,9 +21,9 @@
 - [x] (00:28:04) Dynamic Post Pages
 - [x] (00:36:35) Check progress with npm run dev
 - [x] (00:38:15) Adding Highlight.js & Rehype Plugins
-- [ ] (00:44:38) Dynamic Tag Pages
-- [ ] (00:50:48) taillwindcss aspect-ratio
-- [ ] (00:51:52) Video component
+- [x] (00:44:38) Dynamic Tag Pages
+- [x] (00:50:48) taillwindcss aspect-ratio
+- [x] (00:51:52) Video component
 - [ ] (00:54:42) Custom Image component
 - [ ] (01:01:12) next-sitemap
 - [ ] (01:03:53) Checking Revalidation for ISR

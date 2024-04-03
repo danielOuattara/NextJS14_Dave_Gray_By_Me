@@ -2,6 +2,7 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeHighlight from "rehype-highlight";
 import rehypeSlug from "rehype-slug";
+import Video from "@/components/Video";
 
 export default async function getPostByName(
   fileName: string,
@@ -33,6 +34,9 @@ export default async function getPostByName(
 
   const { frontmatter, content } = await compileMDX<TypeMetadata>({
     source: rawMDX,
+    components: {
+      Video,
+    },
     options: {
       parseFrontmatter: true,
       mdxOptions: {

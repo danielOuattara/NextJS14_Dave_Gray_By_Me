@@ -31,3 +31,7 @@ type TypeDynamicTagProps = {
     tag: string;
   };
 };
+
+type TypeVideo = {
+  videoId: string;
+};

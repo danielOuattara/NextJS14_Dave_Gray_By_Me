@@ -6,7 +6,7 @@ export default function NotFound() {
       Sorry, The requested post does not exist.
       <br />
       <Link href={"/"} className="underline">
-       ← Back to home
+        ← Back to home
       </Link>
     </h1>
   );

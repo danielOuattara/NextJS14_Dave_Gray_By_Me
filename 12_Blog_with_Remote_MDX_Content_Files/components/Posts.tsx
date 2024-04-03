@@ -1,8 +1,8 @@
-import { getSortedAllPostsMeta } from "@/libs";
+import { getSortedAllPostsMetadata } from "@/libs";
 import ListItem from "./ListItem";
 
 export default async function Posts() {
-  const posts = await getSortedAllPostsMeta();
+  const posts = await getSortedAllPostsMetadata();
 
   if (!posts) {
     return <p className="mt-10 text-center">Sorry, no posts available</p>;

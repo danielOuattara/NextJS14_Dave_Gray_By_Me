@@ -1,11 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import {
-  getFormattedDate,
-  getPostByName,
-  getSortedAllPostsMetadata,
-} from "@/libs";
-
+import { getFormattedDate, getPostByName } from "@/libs";
+import "highlight.js/styles/github-dark.css";
 export const revalidate = 0;
 
 //--------------------

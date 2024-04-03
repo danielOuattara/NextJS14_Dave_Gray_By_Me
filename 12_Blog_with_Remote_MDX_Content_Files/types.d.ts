@@ -25,3 +25,9 @@ type TypeGenerateMetadataProps = {
     postId: string;
   };
 };
+
+type TypeDynamicTagProps = {
+  params: {
+    tag: string;
+  };
+};

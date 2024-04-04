@@ -35,3 +35,9 @@ type TypeDynamicTagProps = {
 type TypeVideo = {
   videoId: string;
 };
+
+type TypeCustomImageProps = {
+  src: string;
+  alt: string;
+  priority?: string;
+};

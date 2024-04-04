@@ -7,7 +7,7 @@ const nextConfig = {
         protocol: "https",
         hostname: "raw.githubusercontent.com",
         port: "",
-        pathname: "/danielOuattara/Mdx_Posts/main/images/**",
+        pathname: process.env.REMOTE_PATTERNS_PATHNAME,
       },
     ],
   },

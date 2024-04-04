@@ -3,21 +3,21 @@ import ListItem from "@/components/ListItem";
 import Link from "next/link";
 
 // export const revalidate = 21600; // 1/4 day, in production
-// export const revalidate = 0; // in dev. mode
+export const revalidate = 10; // in dev. mode
 //
 //----------------------------------------------------
 
 /** For development mode here*/
-// export async function generateStaticParams() {
-//   const allPostsMetadata = await getSortedAllPostsMetadata();
-//   if (!allPostsMetadata) return [];
-//   const tags = new Set(allPostsMetadata.map((post) => post.tags).flat());
+export async function generateStaticParams() {
+  const allPostsMetadata = await getSortedAllPostsMetadata();
+  if (!allPostsMetadata) return [];
+  const tags = new Set(allPostsMetadata.map((post) => post.tags).flat());
 
-//   const results = Array.from(tags).map((tag) => ({ tag }));
-//   console.log("results = ", results);
+  const results = Array.from(tags).map((tag) => ({ tag }));
+  console.log("results = ", results);
 
-//   return results;
-// }
+  return results;
+}
 
 // ----------------------------------------------------
 

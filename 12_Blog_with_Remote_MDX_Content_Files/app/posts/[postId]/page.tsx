@@ -2,24 +2,26 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getFormattedDate, getPostByName } from "@/libs";
 import "highlight.js/styles/github-dark.css";
-export const revalidate = 0;
+import getSortedAllPostsMeta from "@/libs/getSortedAllPostsMetadata";
 
+export const revalidate = 10;
 //--------------------
 /**
  * This function SSR to SSG for all request for each blog.
  * This function is commented because of `export const revalidate = 0;`
  */
-// export async function generateStaticParams() {
-//   const posts = await getSortedAllPostsMeta();
 
-//   if (!posts) {
-//     return [];
-//   }
+export async function generateStaticParams() {
+  const posts = await getSortedAllPostsMeta();
 
-//   return posts.map((post) => ({
-//     postId: post.id,
-//   }));
-// }
+  if (!posts) {
+    return [];
+  }
+
+  return posts.map((post) => ({
+    postId: post.id,
+  }));
+}
 
 //-----
 

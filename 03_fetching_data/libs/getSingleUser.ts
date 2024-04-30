@@ -10,5 +10,6 @@ export default async function getSingleUser(userId: string): Promise<User> {
     throw new Error("Failed to fetch data");
   }
 
-  return res.json();
+  const user: Promise<User> = res.json();
+  return user;
 }

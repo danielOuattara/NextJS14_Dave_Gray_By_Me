@@ -7,5 +7,7 @@ export default async function getAllUsers(): Promise<User[]> {
     // This will activate the closest `error.js` Error Boundary
     throw new Error("Failed to fetch data");
   }
-  return res.json();
+  const users: Promise<User[]> = res.json();
+
+  return users;
 }

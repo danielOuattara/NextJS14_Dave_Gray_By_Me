@@ -31,6 +31,6 @@ export default async function getSingleUser(userId: string) {
   if (!res.ok) {
     return undefined;
   }
-
-  return res.json();
+  const user: Promise<User> = res.json();
+  return user;
 }

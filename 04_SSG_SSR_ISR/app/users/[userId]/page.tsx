@@ -1,64 +1,18 @@
-// import { getSingleUser, getSingleUserAllPosts } from "@/libs";
-// import Link from "next/link";
-// import { SingleUserPosts } from "./components";
-// import { Metadata } from "next";
-
-// export async function generateMetadata({
-//   params: { userId },
-// }: Params): Promise<Metadata> {
-//   const userData = getSingleUser(userId);
-//   const user: User = await userData;
-
-//   return {
-//     title: `${user.name} Page`,
-//     description: `This is the page of ${user.name}`,
-//   };
-// }
-
-// // -----------------------
-
-// export default async function SingleUserPage({ params: { userId } }: Params) {
-//   const userData = getSingleUser(userId);
-//   const postsData = getSingleUserAllPosts(userId);
-//   const [user, posts] = await Promise.all([userData, postsData]);
-
-//   return (
-//     <>
-//       <h1>Single User all posts </h1>
-//       <Link href={"/users"}>Go back</Link>
-//       <h2>
-//         Author: {user.name} {user.username}
-//       </h2>
-//       <br />
-//       <SingleUserPosts posts={posts} />
-//     </>
-//   );
-// }
-
-/* ------------------------------------------------------------------  OR */
-
 import { getAllUsers, getSingleUser, getSingleUserAllPosts } from "@/libs";
 import Link from "next/link";
-import { SingleUserPosts } from "./components";
+import { SingleUserPosts } from "@/components";
 import { Suspense } from "react";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-
-//-----------------------
 
 export async function generateMetadata({
   params: { userId },
 }: Params): Promise<Metadata> {
   const user = await getSingleUser(userId);
-  if (!user) {
-    return {
-      title: "User Not Found !! ",
-    };
-  }
-
   return {
-    title: `${user.name} Page`,
-    description: `This is the page of ${user.name}`,
+    title: `${user?.name} Page` || `User not found`,
+    description:
+      `This is the page of ${user?.name}` || `The user fetched is not found `,
   };
 }
 
@@ -70,23 +24,23 @@ export default async function SingleUserPage({ params: { userId } }: Params) {
   const user = await userData;
 
   if (!user) {
-    return notFound();
+    notFound();
   }
 
   return (
-    <>
-      <h1>Single User all posts </h1>
-
-      <Link href={"/users"}>Go back</Link>
+    <section className="m-6 ">
+      <h1 className="text-2xl font-semibold">All posts for {user.name} </h1>
       <h2>
         Author: {user.name} {user.username}
       </h2>
 
+      <Link href={"/users"}>&#8592;&nbsp; Go back</Link>
+
       <br />
-      <Suspense fallback={<h2>Loading data here ...</h2>}>
+      <Suspense fallback={<h2>Loading posts data...</h2>}>
         <SingleUserPosts promise={postsData} />
       </Suspense>
-    </>
+    </section>
   );
 }
 

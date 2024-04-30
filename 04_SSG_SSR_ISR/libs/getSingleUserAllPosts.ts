@@ -16,6 +16,6 @@ export default async function getSingleUserAllPosts(
     // This will activate the closest `error.js` Error Boundary
     throw new Error("Failed to fetch data");
   }
-
-  return res.json();
+  const posts: Promise<Post[]> = res.json();
+  return posts;
 }

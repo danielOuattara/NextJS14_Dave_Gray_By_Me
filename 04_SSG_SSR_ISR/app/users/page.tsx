@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { getAllUsers } from "@/libs";
 import Link from "next/link";
+import { Suspense } from "react";
+import { UsersList } from "@/components";
 
 export const metadata: Metadata = {
   title: "Users Page",
@@ -9,19 +11,15 @@ export const metadata: Metadata = {
 };
 
 export default async function UsersPage() {
-  const users = await getAllUsers();
+  const usersData = getAllUsers();
 
   return (
     <>
       <h1>Users Page</h1>
-      <Link href={"/"}>to Home</Link> |<Link href={"/about"}>to About</Link>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>
-            <Link href={`/users/${user.id}`}>{user.name}</Link>
-          </li>
-        ))}
-      </ul>
+      <Link href={"/"}>to Home</Link> | <Link href={"/about"}>to About</Link>
+      <Suspense fallback={<h2>Loading users data...</h2>}>
+        <UsersList promise={usersData} />
+      </Suspense>
     </>
   );
 }

@@ -39,7 +39,7 @@
 
 import { getSingleUser, getSingleUserAllPosts } from "@/libs";
 import Link from "next/link";
-import { SingleUserPosts } from "./components";
+import { SingleUserPosts } from "@/components";
 import { Suspense } from "react";
 import { Metadata } from "next";
 
@@ -70,7 +70,7 @@ export default async function SingleUserPage({ params: { userId } }: Params) {
       </h2>
 
       <br />
-      <Suspense fallback={<h2>Loading data here ...</h2>}>
+      <Suspense fallback={<h2>Loading posts data...</h2>}>
         <SingleUserPosts promise={postsData} />
       </Suspense>
     </>

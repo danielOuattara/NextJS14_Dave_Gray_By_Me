@@ -5,7 +5,7 @@ type Props = {
 };
 
 export default async function UsersList({ promise }: Props) {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  await new Promise((resolve) => setTimeout(resolve, 500));
   const users = await promise;
   return (
     <ul>

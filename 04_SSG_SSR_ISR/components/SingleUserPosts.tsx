@@ -21,7 +21,7 @@ type Props = {
   promise: Promise<Post[]>;
 };
 export default async function SingleUserPosts({ promise }: Props) {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  await new Promise((resolve) => setTimeout(resolve, 500));
   const posts = await promise;
   return (
     <ul className="my-6">

@@ -1,8 +1,8 @@
-// type Props = {
+// type TypeProps = {
 //   posts: Post[];
 // };
 
-// export default async function SingleUserPost({ posts }: Props) {
+// export default async function SingleUserPost({ posts }: TypeProps) {
 //   return (
 //     <ul>
 //       {posts.map((post) => (
@@ -17,11 +17,11 @@
 
 //--------------------------------------------------------------------------
 
-type Props = {
+type TypeProps = {
   promise: Promise<Post[]>;
 };
-export default async function SingleUserPosts({ promise }: Props) {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+export default async function SingleUserPosts({ promise }: TypeProps) {
+  await new Promise((resolve) => setTimeout(resolve, 500));
   const posts = await promise;
   return (
     <ul>

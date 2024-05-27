@@ -1,11 +1,11 @@
 import Link from "next/link";
 
-type Props = {
+type TypeProps = {
   promise: Promise<User[]>;
 };
 
-export default async function UsersList({ promise }: Props) {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+export default async function UsersList({ promise }: TypeProps) {
+  await new Promise((resolve) => setTimeout(resolve, 500));
   const users = await promise;
   return (
     <ul>

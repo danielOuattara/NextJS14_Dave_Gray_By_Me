@@ -1,8 +1,8 @@
 import getWikiResults from "@/libs/getWikiResults";
 import { copyFileSync } from "fs";
-import Items from "./components/Items";
+import Items from "../../components/SearchResultItems";
 
-type Props = {
+type TypeProps = {
   params: {
     searchTerm: string;
   };
@@ -10,7 +10,7 @@ type Props = {
 
 //----------------------------------------------
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: TypeProps) {
   const wikiData: Promise<SearchResult> = getWikiResults(params.searchTerm);
   const data = await wikiData;
   const displayTerm = params.searchTerm.replaceAll("%20", " ");
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props) {
 
 //-----------------------------------------------
 
-export default async function WikiResults({ params }: Props) {
+export default async function WikiResults({ params }: TypeProps) {
   // const data = await getWikiResults(params.searchTerm); // data type is: any !
 
   const wikiData: Promise<SearchResult> = getWikiResults(params.searchTerm);

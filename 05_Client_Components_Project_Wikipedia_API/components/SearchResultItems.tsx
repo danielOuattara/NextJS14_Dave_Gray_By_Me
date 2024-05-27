@@ -5,7 +5,7 @@ type Props = {
   result: Result;
 };
 
-export default function Items({ result }: Props) {
+export default function SearchResultItems({ result }: Props) {
   // console.log("result = ", result);
 
   const ItemTextCol = (

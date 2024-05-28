@@ -7,7 +7,7 @@ import {
 } from "@/libs";
 
 //---
-type Props = {
+type TypeProps = {
   params: {
     postId: string;
   };
@@ -23,7 +23,7 @@ export function generateStaticParams() {
 }
 
 //--------------------------------------------------------------
-export function generateMetadata({ params }: Props) {
+export function generateMetadata({ params }: TypeProps) {
   const posts = getSortedAllPostsFrontMatter();
   const post = posts.find((post) => post.id === params.postId);
 
@@ -40,10 +40,11 @@ export function generateMetadata({ params }: Props) {
 }
 
 //--------------------------------------------------------------
-export default async function Post({ params }: Props) {
-  // check post exist !
+export default async function Post({ params }: TypeProps) {
   const posts = getSortedAllPostsFrontMatter();
   const post = posts.find((post) => post.id === params.postId);
+
+  // check post exist !
   if (!post) {
     return notFound();
   }

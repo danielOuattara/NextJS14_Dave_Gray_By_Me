@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { getFormattedDate } from "@/libs";
 
-type Props = {
+type TypeProps = {
   post: TypeBlogPost;
 };
 
-export default function ListItem({ post }: Props) {
+export default function ListItem({ post }: TypeProps) {
   return (
     <li className="mt-4 text-2xl dark:text-white/90">
       <Link

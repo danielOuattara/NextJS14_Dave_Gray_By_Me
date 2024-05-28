@@ -31,7 +31,7 @@ export default function Feedback() {
     const { name, email, message } = data;
 
     // Send data to API route
-    const res = await fetch("http://localhost:3000/api/feedback", {
+    const res = await fetch("http://127.0.0.1:3000/api/feedback", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +46,7 @@ export default function Feedback() {
     const result = await res.json();
     console.log(result);
 
-    // Navigate to thank you
+    // Navigate to thank you page
     router.push(`/thank-you/`);
   };
 

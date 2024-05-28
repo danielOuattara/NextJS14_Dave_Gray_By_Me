@@ -6,8 +6,6 @@ type Props = {
 };
 
 export default function SearchResultItems({ result }: Props) {
-  // console.log("result = ", result);
-
   const ItemTextCol = (
     <>
       <h2>

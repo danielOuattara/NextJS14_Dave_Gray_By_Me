@@ -1,6 +1,5 @@
 import getWikiResults from "@/libs/getWikiResults";
-import { copyFileSync } from "fs";
-import Items from "../../components/SearchResultItems";
+import SearchResultItems from "../../components/SearchResultItems";
 
 type TypeProps = {
   params: {
@@ -41,7 +40,7 @@ export default async function WikiResults({ params }: TypeProps) {
       {results ? (
         Object.values(results).map((result) => (
           <>
-            <Items key={result.pageid} result={result} />
+            <SearchResultItems key={result.pageid} result={result} />
           </>
         ))
       ) : (

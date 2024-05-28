@@ -6,7 +6,6 @@ type Props = {
   };
 };
 
-
 //------------------------------------------------------------------- # 1
 // export async function GET(request: Request) {
 //   console.log("request = ", request);
@@ -21,12 +20,14 @@ type Props = {
 //   return Response.json(todo);
 // }
 
-//------------------------------------------------------------------- # 2
+//------------------------------------------------------------------- # 2 Better
 export async function GET(request: Request, { params }: Props) {
   const response = await fetch(`${DATA_SOURCE_URL}/${params.todoId}`);
   const todo: TypeTodo = await response.json();
   if (!todo.userId) {
-    return Response.json({ message: `Not to found with todoId : ${params.todoId}` });
+    return Response.json({
+      message: `Not to found with todoId : ${params.todoId}`,
+    });
   }
 
   return Response.json(todo);
@@ -36,12 +37,12 @@ export async function GET(request: Request, { params }: Props) {
 /*--- todoId in params DELETE: http://localhost:3000/api/todos/123 ---*/
 
 export async function DELETE(request: Request, { params }: Props) {
-  console.log("in [todoId]")
+  console.log("in [todoId]");
   if (!params.todoId) {
     return Response.json({ message: "Id is required from the url" });
   }
 
-  console.log(params.todoId)
+  console.log(params.todoId);
   await fetch(`${DATA_SOURCE_URL}/${params.todoId}`, {
     method: "DELETE",
     headers: {
@@ -52,7 +53,6 @@ export async function DELETE(request: Request, { params }: Props) {
 
   return Response.json({ message: `Todo ${params.todoId} is deleted` });
 }
-
 
 //------------------------------------------------------------------------
 /*PUT: http://localhost:3000/api/todos/123 */

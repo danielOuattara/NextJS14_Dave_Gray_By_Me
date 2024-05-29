@@ -25,7 +25,6 @@ export async function GET(request: Request) {
 
   const res = await fetch(DATA_SOURCE_URL);
   const todos: TypeTodo[] = await res.json();
-  console.log("todos = ", todos);
 
   // return Response.json({ todos })
 

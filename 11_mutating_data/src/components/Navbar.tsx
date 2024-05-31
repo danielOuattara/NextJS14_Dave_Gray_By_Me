@@ -6,6 +6,7 @@ export default function Navbar() {
       <div className="max-w-xl mx-auto sm:px-4 flex justify-between">
         <h1 className="text-3xl font-bold mb-0">
           <Link
+            // prefetch={false} // <-- TEST this but not success
             href="/"
             className="text-white/90 no-underline hover:text-white"
           >

@@ -20,11 +20,9 @@ export default function AddTodo() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const { userId, title } = data;
-
+    if (!title) return;
     setIsFetching(true);
-
     const res = await fetch(`http://127.0.0.1:3500/todos`, {
       method: "POST",
       headers: {
@@ -37,9 +35,7 @@ export default function AddTodo() {
     });
 
     await res.json();
-
     setIsFetching(false);
-
     setData((prevData) => ({
       ...prevData,
       title: "",
@@ -48,6 +44,7 @@ export default function AddTodo() {
     startTransition(() => {
       if (pathname === "/add") {
         router.push("/");
+        router.refresh();
       } else {
         // Refresh the current route and fetch new data
         // from the server without losing
@@ -66,7 +63,7 @@ export default function AddTodo() {
     }));
   };
 
-  const content = (
+  return (
     <form
       onSubmit={handleSubmit}
       className="flex gap-2 items-center"
@@ -91,6 +88,4 @@ export default function AddTodo() {
       </button>
     </form>
   );
-
-  return content;
 }

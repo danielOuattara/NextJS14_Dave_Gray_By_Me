@@ -23,12 +23,13 @@
 
 ##  (02:34) Reviewing the components
 
-- so the `<Todos />`  fetches the list of todos and then render a list of todos
+- so the `<Todos />`  fetches the list of todos and then render a list
+  of todos
 - then those todos data are passed as prop to simple `<Todo />`
 - this `<Todo />` is a `use client` component to allow interactivity: `update` and `delete`
 - here they use `useRouter, useTransition, useState`
 
-##  (04:26) router.refresh## ()
+##  (04:26) router.refresh()
 
 - `startTransition` to handle `router.refresh()` so get data updated visible
 
@@ -310,14 +311,14 @@ Soft navigation preserves the state of the application and provides a
 smoother user experience, but it may not always trigger data re-fetching
 less explicitly handled.
 
-**When to Use Hard Navigation**
+**When to Use Hard Navigation**:
 
 Hard navigation is useful when you need to ensure that the latest data is
 always fetched and rendered. This is particularly relevant in cases where
 the application state needs to be reset or when critical updates have
 occurred that require a fresh fetch of data.
 
-**When to Use Soft Navigation**
+**When to Use Soft Navigation**:
 
 Soft navigation is ideal for maintaining application state and providing a
 smoother user experience. It should be used when the data consistency can
@@ -326,8 +327,7 @@ less critical.
 
 ### Implementing Hard Navigation in Next.js
 
-To implement hard navigation, you can use the `window.location` object to force
-a full page reload.
+To implement hard navigation, you can use the `window.location` object to force a full page reload.
 
 ### Implementing Soft Navigation with Data Re-fetching
 
@@ -340,13 +340,13 @@ reduce the need for useEffect for data fetching in certain scenarios.
 
 However, it's important to understand when and why you might use each approach.
 
-**Using Hard Navigation**
+**Using Hard Navigation**:
 
 Hard navigation ensures that the entire page is reloaded, and thus, all data fetching
 logic defined in the initial load of the page is executed again. This guarantees that
 the data displayed on the page is always up-to-date.
 
-**Using Soft Navigation with Client-side Data Refreshing**
+**Using Soft Navigation with Client-side Data Refreshing**:
 
 Soft navigation can be used in combination with client-side data refreshing methods,
 like router.refresh(), to update the page data without a full reload. This approach
